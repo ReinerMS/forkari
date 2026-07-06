@@ -218,18 +218,18 @@
       <p class="text-xs tracking-[0.3em] uppercase mb-3" style="color:var(--gold)">Nos conocimos</p>
       <h2 class="display text-3xl mb-2" style="color:var(--rose-700)">6 de diciembre, 2025</h2>
       <div class="ornament my-4"></div>
-      <p id="daysKnown" class="display text-2xl" style="color:var(--rose-500)">...</p>
+      <p id="daysKnown" class="display text-2xl leading-relaxed" style="color:var(--rose-500)">...</p>
     </div>
 
     <div class="glass-card rounded-2xl p-10 text-center reveal shadow-sm">
       <p class="text-xs tracking-[0.3em] uppercase mb-3" style="color:var(--gold)">Somos novios</p>
       <h2 class="display text-3xl mb-2" style="color:var(--rose-700)">21 de marzo, 2026</h2>
       <div class="ornament my-4"></div>
-      <p id="daysDating" class="display text-2xl" style="color:var(--rose-500)">...</p>
+      <p id="daysDating" class="display text-2xl leading-relaxed" style="color:var(--rose-500)">...</p>
     </div>
 
   </div>
-  
+
 </section>
 
 <!-- ================= CARTA ================= -->
@@ -276,19 +276,36 @@
 
 <script>
 
-/* ---------- Contadores ---------- */
-function updateCounters(){
-  const today = new Date();
-  const knownDate = new Date("2025-12-06");
-  const datingDate = new Date("2026-03-21");
+/* ---------- Contadores en vivo ---------- */
+const knownDate = new Date("2025-12-06T00:00:00");
+const datingDate = new Date("2026-03-21T00:00:00");
 
-  const knownDays = Math.floor((today-knownDate)/(1000*60*60*24));
-  const datingDays = Math.floor((today-datingDate)/(1000*60*60*24));
+function formatElapsed(fromDate){
+  const now = new Date();
+  let diff = now - fromDate;
 
-  document.getElementById("daysKnown").innerHTML = `${knownDays} días juntos`;
-  document.getElementById("daysDating").innerHTML = `${datingDays} días de novios`;
+  if(diff < 0){
+    return "Aún no comienza";
+  }
+
+  const totalSeconds = Math.floor(diff/1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  const pad = n => String(n).padStart(2,'0');
+
+  return `${days} días, ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
 }
+
+function updateCounters(){
+  document.getElementById("daysKnown").innerHTML = formatElapsed(knownDate);
+  document.getElementById("daysDating").innerHTML = formatElapsed(datingDate);
+}
+
 updateCounters();
+setInterval(updateCounters, 1000);
 
 /* ---------- Reveal on scroll ---------- */
 const observer = new IntersectionObserver((entries)=>{
