@@ -5,7 +5,7 @@ import { travels } from '../data/siteDataTravel'
 
 export default function TravelsSection() {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-16 relative">
+    <section className="max-w-5xl mx-auto px-2 py-2 relative">
       <Reveal className="text-center mb-10">
         <Ornament className="mb-4">
           <span className="font-script text-2xl sm:text-4xl text-rose-500">Nuestros viajes</span>

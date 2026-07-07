@@ -1,13 +1,12 @@
 // Edita aquí las fechas y textos del sitio — todo lo demás se actualiza solo.
 
 export const siteData = {
-  name: 'Kari',
+  name: 'R&K',
   heroTagline: 'Gracias por ser tan especial',
   heroText:
     'Desde que llegaste a mi vida todo tiene más color, más sentido ' +
     'y más alegría. Gracias por tu amor, tu apoyo y por acompañarme ' +
     'en cada paso.',
-  heroSignature: 'Te quiero mucho ❤',
 
   milestones: [
     {
@@ -47,6 +46,4 @@ export const siteData = {
     'Eres una persona increíble y me siento muy afortunado de tenerte ' +
       'en mi vida.',
   ],
-
-  closingText: 'Contigo, cada momento es mi favorito',
 }
